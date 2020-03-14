@@ -5,11 +5,15 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class ItemPedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	//Chave composta de produto e pedido
+	@JsonIgnore
 	@EmbeddedId //um ID embutido em um item auxiliar
 	private ItemPedidoPK id = new ItemPedidoPK();
 	
@@ -30,6 +34,7 @@ public class ItemPedido implements Serializable {
 	}
 
 	//Dessa forma posso acesso direto aos Pedido e Produto fora da classe - melhorando a semantica da classe
+	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}

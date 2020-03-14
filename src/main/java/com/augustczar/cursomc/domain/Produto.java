@@ -3,7 +3,6 @@ package com.augustczar.cursomc.domain;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable{
@@ -38,6 +38,7 @@ public class Produto implements Serializable{
 	private List<Categoria> categorias = new ArrayList<Categoria>();
 	
 	//Set garante que eu tenha uma colecao de itens sem repeticao
+	@JsonIgnore
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedido> itens = new HashSet<ItemPedido>();
 	
@@ -52,6 +53,7 @@ public class Produto implements Serializable{
 		this.preco = preco;
 	}
 	
+	@JsonIgnore
 	public List<Pedido> getPedidos(){
 		List<Pedido> lista = new ArrayList<Pedido>();
 		for (ItemPedido itemPedido : itens) {
