@@ -19,14 +19,6 @@ public class Endereco implements Serializable{
 	@Id
 	@ GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
 	private String logradouro;
 	private String numero;
 	private String complemento;
@@ -111,6 +103,14 @@ public class Endereco implements Serializable{
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 
 	@Override
