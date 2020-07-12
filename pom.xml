@@ -12,7 +12,7 @@
 	<groupId>com.augustczar.cursomc</groupId>
 	<artifactId>cursomc</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>cursomc</name>
 	<description>Estudo de caso Java para curso de Modelagem Conceitual com UML</description>
 
