@@ -123,10 +123,10 @@ public class DBService {
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 		
-		Cliente cli1 = new Cliente(null, "Maria Silva", "augustczarramos@gmil.com", "36378912377", TipoCliente.PESSOA_FISICA, bpe.encode("1234"));
+		Cliente cli1 = new Cliente(null, "Maria Silva", "augustczarramos@gmail.com", "36378912377", TipoCliente.PESSOA_FISICA, bpe.encode("1234"));
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 		
-		Cliente cli2 = new Cliente(null, "Aldelice Barros", "aldelicelima@gmil.com", "38063901002", TipoCliente.PESSOA_FISICA, bpe.encode("1234"));
+		Cliente cli2 = new Cliente(null, "Aldelice Barros", "aldelicelima@gmail.com", "38063901002", TipoCliente.PESSOA_FISICA, bpe.encode("1234"));
 		cli2.getTelefones().addAll(Arrays.asList("999292929", "883245679"));
 		cli2.addPerfil(Perfil.ADMIN);
 		
@@ -142,13 +142,13 @@ public class DBService {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		Pedido ped1 = new Pedido(null, sdf.parse("30/09/2017 10:32"), cli1, e1);
-		Pedido ped2 = new Pedido(null, sdf.parse("10/10/2017 19:35"), cli1, e2);
+		Pedido ped1 = new Pedido(null, sdf.parse("28/10/2020 10:32"), cli1, e1);
+		Pedido ped2 = new Pedido(null, sdf.parse("28/10/2020 19:35"), cli1, e2);
 		
 		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 		ped1.setPagamento(pagto1);
 		
-		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("20/10/2017 00:00"), null);
+		Pagamento pagto2 = new PagamentoComBoleto(null, EstadoPagamento.PENDENTE, ped2, sdf.parse("30/10/2020 00:00"), null);
 		ped2.setPagamento(pagto2);
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1, ped2));
