@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,11 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.augustczar.cursomc.domain.Cidade;
 import com.augustczar.cursomc.domain.Cliente;
 import com.augustczar.cursomc.domain.Endereco;
+import com.augustczar.cursomc.domain.enums.Perfil;
 import com.augustczar.cursomc.domain.enums.TipoCliente;
 import com.augustczar.cursomc.dto.ClienteDTO;
 import com.augustczar.cursomc.dto.ClienteNewDTO;
 import com.augustczar.cursomc.repositories.ClienteRepository;
 import com.augustczar.cursomc.repositories.EnderecoRepository;
+import com.augustczar.cursomc.security.UserSpringSecurity;
+import com.augustczar.cursomc.services.exceptions.AuthorizationException;
 import com.augustczar.cursomc.services.exceptions.DataIntegrityException;
 import com.augustczar.cursomc.services.exceptions.ObjectNotFoundException;
 
@@ -36,6 +40,12 @@ public class ClienteService {
 	private BCryptPasswordEncoder bpe;
 	
 	public Cliente find(Integer id) {
+		
+		UserSpringSecurity userSS = UserService.authenticated();
+		if(userSS == null || !userSS.hasRole(Perfil.ADMIN) &&  !id.equals(userSS.getId())) {
+			throw new AuthorizationException("Acesso negado!");
+		}
+		
 		Optional<Cliente> obj = clienteRepository.findById(id);
 		
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
