@@ -37,7 +37,7 @@ public abstract class AbstractEmailService implements EmailService {
 		sendEmail(sm);
 	}
 
-	private SimpleMailMessage prepareNewPasswordEmail(Cliente cliente, String newPass) {
+	protected SimpleMailMessage prepareNewPasswordEmail(Cliente cliente, String newPass) {
 		SimpleMailMessage sm = new SimpleMailMessage();
 		sm.setTo(cliente.getEmail());
 		sm.setFrom(sender);

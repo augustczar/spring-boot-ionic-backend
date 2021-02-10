@@ -22,7 +22,7 @@ public class AuthService {
 	@Autowired
 	private EmailService emailService;
 	
-	private Random random;
+	private Random random = new Random();
 
 	public void sendNewPassword(String email) {
 		
