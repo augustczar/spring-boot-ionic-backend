@@ -19,7 +19,8 @@ public class CursomcApplication  implements CommandLineRunner{
 	//methodo nao utilizado no momento, deixado apena com possibilidade de ser utilizado no futuro
 	@Override
 	public void run(String... args) throws Exception {
-		s3Service.uploadFile("/home/augustczar/Pictures/imgloiras/loira.png");
+		//teste foram do endpoint
+		//s3Service.uploadFile("/home/augustczar/Pictures/imgloiras/loira.png");
 	}
 
 }
